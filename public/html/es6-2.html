@@ -1,0 +1,81 @@
+<script>
+//구조분해 할당(비구조화할당)
+const obj ={
+  a: 'A', 
+  b: 'B',
+  c: 'C',
+}
+//ES5
+// var a = obj.a; 
+// var b = obj.b;
+// var c = obj.c;
+// console.log(a,b,c);
+
+//ES6
+var {a, b, c} = obj;
+console.log(a,b,c);
+
+//rest operator(나머지 연산자) //spread operator  %
+const fruits = ['apple', 'banana', 'mango'];
+const fruits2 = ['kiwi', 'orange'];
+
+const newFruits = fruits.concat(fruits2);
+console.log(newFruits);
+
+const fruits4 = ['kiwi', ...fruits , 'orange'];
+console.log(fruits4);
+
+
+
+class Test{
+  constructor(...arg){
+    this.arg = arg;
+  }
+  print(){
+    console.log(this.arg);
+  }
+}
+
+
+var test = new Test();
+var test2 = new Test('A');
+var test3 = new Test('A', 'B');
+
+test.print();
+test2.print();
+test3.print();
+
+
+function sample(a=1, b=2){
+  console.log(a+b);
+}
+sample();
+sample(10);
+sample(10,20);
+
+console.clear();
+//Arrow function
+function fn(a){
+  return a*a;
+}
+
+var fn2 = function(a){
+  return a*a;
+}
+
+var fn3 = (a)=>{return a*a;}
+var fn4 = a=>a*a;
+console.log(fn3(5));
+console.log(fn4(5));
+
+
+var dt = new Date();
+console.log(zeroPlus(dt.getSeconds()));
+function zeroPlus(z){
+  return z<10? '0'+z : z;
+}
+
+var zeroPlus2 = v => v<10 ? '0'+v : v;
+console.log(zeroPlus2(dt.getSeconds()));
+
+</script>
