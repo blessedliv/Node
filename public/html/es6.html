@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+   <li>1</li>
+   <li>2</li>
+   <li>3</li>
+   <li>4</li>
+   <li>5</li>
+  </ul>
+
+<script>
+
+  var a = 10; 
+  //console.log(this);
+  // window.a = 10;
+  // this.a = 10;
+
+  function test(){
+  //  console.log(this);
+  }
+
+  //test();
+
+
+  var obj = {
+    test : function(){
+      console.log(this);
+    }
+  }
+  //obj.test();
+
+
+//Test2();
+  function Test2(){
+    console.log("test2");
+  }
+
+//Test();
+  var Test = function(){
+    console.log("test");
+  }
+
+//생성자 객체
+function Test3(){
+  return this;
+}
+
+var test = new Test3();
+console.log(test);
+
+
+// Literal 객체
+var object = {
+  a:10,
+  test:function(){
+    console.log(this);
+  }
+}
+var object2 = object;   // 주소 카피 하는 것! 객체니까....!
+object2.a = 30;
+console.log(object2.a);
+console.log(object.a);
+
+//생성자 객체 활용 ES5
+function Car(name){
+  this.name = name;
+  return this;  //객체 라는 걸 나타낸다.. 없어도 됨
+}
+
+Car.prototype.drive = function(){
+  console.log(this.name + " is running");
+}
+
+
+var myCar = new Car('붕붕이');
+myCar.name ;
+console.log(myCar);
+
+myCar.drive();
+
+var yourCar = new Car('방방이');
+yourCar.name ;
+console.log(yourCar);
+
+yourCar.drive();
+
+var arr = [1,2,3,4,5];
+var arr2 = arr.slice();  //deep copy
+arr2[0] = 100;
+console.log(arr, arr2);
+
+
+//ES6 생성자 객체 생성
+class Car2{
+  constructor(name){
+    this.name = name;
+  }
+  drive(){ // function 적으면 에러난다.
+    console.log(this.name + ' is running');
+  }
+}
+var car = new Car2('자동차');
+car.drive();
+
+//변수
+//ES5 - var
+//ES6 - const, let, var 
+for(var i=0; i<5; i++){
+
+}
+console.log(i);
+
+
+
+var list = document.querySelectorAll('ul > li');
+for(var i=0; i<list.length; i++){   // let 으로 변경해야 함
+  list[i].addEventListener('click',function(){
+    console.log(i);
+  });
+}
+
+const arr5 = [];
+arr5[0] = 'A';
+console.log(arr5);
+
+
+const arr6 = ['A', 'B', 'C'];
+for(let i=0; i<arr6.length; i++){
+  console.log(arr6[i]);
+}
+
+for(let i in arr6){  // Array.prototype.test 만들면 그것도 같이 출력한다. 그래서 사용안함
+  console.log(arr6[i]);
+}
+
+//ES6
+for(let v of arr6){
+  console.log(v);
+}
+
+arr6.forEach(function(v, i){
+  console.log(v, i);
+});
+
+console.clear();
+//filter / map
+const users = [
+  {id:1, name:'홍길동1', age:25},
+  {id:2, name:'홍길동2', age:35},
+  {id:3, name:'홍길동3', age:45},
+  {id:4, name:'홍길동4', age:55},
+  {id:5, name:'홍길동5', age:65},
+  {id:6, name:'홍길동6', age:75},
+  {id:7, name:'홍길동7', age:85},
+];
+
+const user30 = users.filter(a=>a.age>30);   // deep copy
+console.log(user30);
+
+const user2021 = users.map(a=>a.age+1);  //map은 새로운 배열 생성
+console.log(users, user2021);
+
+//ES6 Set 객체
+let set = new Set();
+set.add(1);
+set.add(2);
+set.add(3);
+set.add(3);
+set.add(2);
+set.add(2);
+set.add(3);
+console.log(set.has(3));
+console.log(set);
+set.delete(2);
+console.log(set);
+console.log(set.size);
+
+
+let map = new Map(); // 자바의 list 객체
+map.set('a', 'AAA');
+map.set('b', 'BBB');
+map.set('c', 'CCC');
+map.set('d', 'DDD');
+console.log(map);
+console.log(map.size);
+
+
+for(let [k, v] of map){
+  console.log(k, v);
+}
+
+console.log(map.keys());
+console.log(map.values());
+
+for(let v of map.values()){
+  console.log(v);
+}
+
+for(let [k, v] of map.entries()){
+  console.log(k,v);
+}
+
+console.log(map.get('a'));
+console.log(map.has('a'));
+
+console.clear();
+
+
+
+
+</script>
+</body>
+</html>
